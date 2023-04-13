@@ -17,12 +17,12 @@ public:
 		passenger_number = 0;
 		benefit = 0;
 	}
-	Bus(string numer1, string Type1, int cost1, int pass_num) {
+	Bus(string numer1, string Type1, float cost1, int pass_num) {
 		numer = numer1;
 		Type = Type1;
 		cost = cost1;
 		passenger_number = pass_num;
-		benefit = (cost / pass_num);
+		benefit = cost / pass_num;
 	}
 	
 	Bus Auto_Type() {
@@ -44,7 +44,7 @@ public:
 		int num;
 		Bus bus;
 		num = (rand() + 10000);
-		bus.cost == num;
+		bus.cost = num;
 		return bus;
 	}
 	Bus Auto_Pass_Num() {
@@ -54,7 +54,7 @@ public:
 		bus.passenger_number = num;
 		return bus;
 	}
-	Bus Auto_Benefit(int cost, int pass_num) {
+	Bus Auto_Benefit(float cost, int pass_num) {
 		Bus bus;
 		bus.benefit = cost / pass_num;
 		return bus;
@@ -62,7 +62,7 @@ public:
 	Bus Auto_Numer() {
 		Bus bus;
 		string numer;
-		int num = rand() % 20;
+		int num = rand() % 21;
 		switch (num) {
 		case 0: numer = "0000PM7"; break;
 		case 1: numer = "0001PM7"; break;
@@ -89,27 +89,38 @@ public:
 		bus.numer = numer;
 		return bus;
 	}
-	Bus Iniciate() {
+	void Iniciate() {
 		Bus bus;
 		bus.Auto_Numer();
 		bus.Auto_Type();
 		bus.Auto_Cost();
 		bus.Auto_Pass_Num();
-		int cost = bus.cost;
-		int pass_num = bus.passenger_number;
-		bus.Auto_Benefit(cost, pass_num);
-		return bus;
+		bus.Auto_Benefit(bus.cost, bus.passenger_number);
 	}
 	string convert() {
 		string msg = " ";
-		msg += "Numer: " + numer + " " + " Type: " + Type + "Cost: " + to_string(cost) + " passenger_number: " + to_string(passenger_number) + " Benefit " + to_string(benefit);
+		msg += "Numer: " + numer + " " + " Type: " + Type + " Cost: " + to_string(cost) + " passenger_number: " + to_string(passenger_number) + " Benefit " + to_string(benefit);
 		return msg;
 	}
-
+	int* sort(int* array) {
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 5; j++) {
+				if (array[j] < array[j + 1]) {
+					int temp;
+					temp = array[j];
+					array[j] = array[j + 1];
+					array[j + 1] = temp;
+				}
+			}
+			
+		}
+		return array;
+	}
 };
 
 int main() {
 	srand(time(NULL));
+	Bus array[5];
 	Bus bus1;
 	Bus bus2;
 	Bus bus3;
@@ -125,8 +136,12 @@ int main() {
 	cout << "Bus3" << bus3.convert() << endl;
 	cout << "Bus4" << bus4.convert() << endl;
 	cout << "Bus5" << bus5.convert() << endl;
-
-
+	array[0] = bus1;
+	array[1] = bus2;
+	array[2] = bus3;
+	array[3] = bus4;
+	array[4] = bus5;
+	
 
 
 
