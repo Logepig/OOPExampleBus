@@ -98,10 +98,11 @@ public:
 		int pass_num = bus.passenger_number;
 		bus.Auto_Benefit(cost, pass_num);
 	}
-	string convert(Bus bus);
-	string msg = " ";
-	msg += 
-
+	string convert() {
+		string msg = " ";
+		msg += "Numer: " + numer + " " + " Type: " + Type + "Cost: " + to_string(cost) + " passenger_number: " + to_string(passenger_number) + " Benefit " + to_string(benefit);
+		return msg;
+	}
 
 };
 
